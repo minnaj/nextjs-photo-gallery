@@ -1,11 +1,13 @@
 import { Suspense } from "react";
 import Container from "@mui/material/Container";
-import type { Photo } from "../types/photo";
 import PhotoGrid from "@/components/PhotoGrid";
+import Loading from "@/app/loading";
+// import sleep from "@/utils/sleep";
 
-async function getPhotos(page = 1, limit = 10): Promise<Photo[]> {
+async function getPhotos(page = 1, limit = 10) {
+  // await sleep(4000); // To test suspense
   const res = await fetch(
-    `${process.env.URL}/api/photos?page=${page}&limit=${limit}`,
+    `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${limit}`,
   );
   if (!res.ok) {
     throw new Error("Failed to fetch photos");
@@ -19,7 +21,7 @@ export default async function Home() {
 
   return (
     <Container maxWidth="md" sx={{ marginTop: 5 }}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <PhotoGrid promise={photos} />
       </Suspense>
     </Container>
