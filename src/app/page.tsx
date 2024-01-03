@@ -1,7 +1,4 @@
-import { Suspense } from "react";
-import Container from "@mui/material/Container";
 import PhotoGrid from "@/components/PhotoGrid";
-import Loading from "@/app/loading";
 // import sleep from "@/utils/sleep";
 
 async function getPhotos(page = 1, limit = 10) {
@@ -17,13 +14,7 @@ async function getPhotos(page = 1, limit = 10) {
 }
 
 export default async function Home() {
-  const photos = getPhotos(1, 20);
+  const photos = await getPhotos(1, 20);
 
-  return (
-    <Container maxWidth="md" sx={{ marginTop: 5 }}>
-      <Suspense fallback={<Loading />}>
-        <PhotoGrid promise={photos} />
-      </Suspense>
-    </Container>
-  );
+  return <PhotoGrid photos={photos} />;
 }
