@@ -1,7 +1,11 @@
 import PhotoGrid from "@/components/PhotoGrid";
 import { Photo } from "@/types/photo";
+import { LIMIT_OPTIONS } from "@/utils/image";
 import { parseNumber } from "@/utils/parse";
 // import sleep from "@/utils/sleep";
+
+const DEFAULT_PAGE = 1;
+const DEFAULT_LIMIT = 20;
 
 type PhotoData = {
   photos: Photo[];
@@ -29,18 +33,25 @@ async function getPhotos(page = 1, limit = 10): Promise<PhotoData> {
 type HomeProps = {
   searchParams?: {
     page?: string;
+    limit?: string;
   };
 };
 
 export default async function Home({ searchParams }: HomeProps) {
-  const page = parseNumber(searchParams?.page || "", 1);
-  const photoData = await getPhotos(page, 20);
+  const page = parseNumber(searchParams?.page || "", DEFAULT_PAGE);
+  let limit = parseNumber(searchParams?.limit || "", DEFAULT_LIMIT);
+  if (!LIMIT_OPTIONS.includes(limit)) {
+    limit = DEFAULT_LIMIT;
+  }
+
+  const photoData = await getPhotos(page, limit);
 
   return (
     <PhotoGrid
       photos={photoData.photos}
       page={page}
       pageCount={photoData.pageCount}
+      limit={limit}
     />
   );
 }
