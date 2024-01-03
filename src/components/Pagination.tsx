@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SelectChangeEvent } from "@mui/material";
 import MuiPagination from "@mui/material/Pagination";
@@ -21,6 +21,14 @@ export default function Pagination({
   const { replace } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (pageCount && page > pageCount) {
+      const params = new URLSearchParams(searchParams);
+      params.set("page", `${pageCount}`);
+      replace(`${pathname}?${params.toString()}`);
+    }
+  }, [replace, page, pageCount, pathname, searchParams]);
 
   const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
     const params = new URLSearchParams(searchParams);
