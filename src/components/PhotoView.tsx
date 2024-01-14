@@ -4,6 +4,8 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import MuiLink from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { Photo } from "@/types/photo";
 import { PHOTO_HEIGHT, PHOTO_WIDTH } from "@/utils/image";
 
@@ -16,7 +18,7 @@ export default async function PhotoView({ photo }: PhotoViewProps) {
     <>
       <Box mb={2}>
         <MuiLink component={Link} href="/">
-          Back
+          Return to gallery
         </MuiLink>
       </Box>
       <Grid container spacing={2}>
@@ -36,12 +38,36 @@ export default async function PhotoView({ photo }: PhotoViewProps) {
             />
           )}
         </Grid>
-        <Grid item container direction="column" xs="auto">
-          <Grid item>Title: {photo?.title || ""}</Grid>
-          <Grid item>ID: {photo?.id || ""}</Grid>
-          <Grid item>Album ID: {photo?.albumId || ""}</Grid>
-          <Grid item>URL: {photo?.url || ""}</Grid>
-          <Grid item>Thumbnail URL: {photo?.thumbnailUrl || ""}</Grid>
+        <Grid item xs>
+          <Paper sx={{ p: 2 }}>
+            <ul>
+              <Typography variant="body1" component="li">
+                Title: {photo?.title || ""}
+              </Typography>
+              <Typography variant="body1" component="li">
+                ID: {photo?.id || ""}
+              </Typography>
+              <Typography variant="body1" component="li">
+                Album ID: {photo?.albumId || ""}
+              </Typography>
+              <Typography variant="body1" component="li">
+                {"URL: "}
+                {photo?.url && (
+                  <MuiLink href={photo.url} rel="noreferrer noopener">
+                    {photo.url}
+                  </MuiLink>
+                )}
+              </Typography>
+              <Typography variant="body1" component="li">
+                {"Thumbnail URL: "}
+                {photo?.thumbnailUrl && (
+                  <MuiLink href={photo.thumbnailUrl} rel="noreferrer noopener">
+                    {photo.thumbnailUrl}
+                  </MuiLink>
+                )}
+              </Typography>
+            </ul>
+          </Paper>
         </Grid>
       </Grid>
     </>
