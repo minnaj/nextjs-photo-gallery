@@ -10,8 +10,9 @@ type PhotoCardProps = {
 };
 
 export default function PhotoCard({ id, imageUrl, title }: PhotoCardProps) {
+  // Use display: block to remove extra space below img
   return (
-    <Grid item xs={6} sm={4} md={3} lg={2} flexShrink="0">
+    <Grid item flexShrink="0" sx={{ "& img": { display: "block" } }}>
       <Link href={`/photo/${id}`}>
         <Image
           height={THUMBNAIL_HEIGHT}

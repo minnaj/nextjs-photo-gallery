@@ -25,9 +25,10 @@ export default function PhotoGrid({
       <Pagination page={page} pageCount={pageCount} limit={limit} />
       <Grid
         container
-        spacing={{ xs: 1, sm: 2 }}
+        spacing={{ xs: 1, sm: 3 }}
         alignItems="center"
         justifyContent="center"
+        sx={{ maxWidth: "56.25rem" }}
       >
         {photos.map((photo) => (
           <PhotoCard

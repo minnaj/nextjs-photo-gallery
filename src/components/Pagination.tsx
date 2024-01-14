@@ -1,11 +1,12 @@
 "use client";
 import { ChangeEvent, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { SelectChangeEvent } from "@mui/material";
 import MuiPagination from "@mui/material/Pagination";
+import { SelectChangeEvent } from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import Select from "@/components/Select";
 import { LIMIT_OPTIONS } from "@/utils/image";
+import { useSmOrLarger } from "@/utils/breakpoints";
 
 type PaginationProps = {
   page: number;
@@ -21,6 +22,7 @@ export default function Pagination({
   const { replace } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const smOrLarger = useSmOrLarger();
 
   useEffect(() => {
     if (pageCount && page > pageCount) {
@@ -53,6 +55,8 @@ export default function Pagination({
         count={pageCount}
         shape="rounded"
         color="primary"
+        siblingCount={smOrLarger ? 1 : 0}
+        size={smOrLarger ? "medium" : "small"}
       />
       <Select
         id="limit-select"
