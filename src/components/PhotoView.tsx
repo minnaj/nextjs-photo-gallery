@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import MuiLink from "@mui/material/Link";
@@ -13,11 +14,13 @@ type PhotoViewProps = {
   photo?: Photo;
 };
 
-export default async function PhotoView({ photo }: PhotoViewProps) {
+export default function PhotoView({ photo }: PhotoViewProps) {
+  const t = useTranslations("PhotoView");
+
   return (
     <>
       <Box mb={2}>
-        <NavigationLink href="/">Return to gallery</NavigationLink>
+        <NavigationLink href="/">{t("return_to_gallery")}</NavigationLink>
       </Box>
       <Grid container spacing={2}>
         <Grid item>
@@ -40,13 +43,13 @@ export default async function PhotoView({ photo }: PhotoViewProps) {
           <Paper sx={{ p: 2 }}>
             <ul>
               <Typography variant="body1" component="li">
-                Title: {photo?.title || ""}
+                {`${t("title")}: ${photo?.title || ""}`}
               </Typography>
               <Typography variant="body1" component="li">
                 ID: {photo?.id || ""}
               </Typography>
               <Typography variant="body1" component="li">
-                Album ID: {photo?.albumId || ""}
+                {`${t("album")} ID: ${photo?.albumId || ""}`}
               </Typography>
               <Typography variant="body1" component="li">
                 {"URL: "}
@@ -57,7 +60,7 @@ export default async function PhotoView({ photo }: PhotoViewProps) {
                 )}
               </Typography>
               <Typography variant="body1" component="li">
-                {"Thumbnail URL: "}
+                {`${t("thumbnail")} URL: `}
                 {photo?.thumbnailUrl && (
                   <MuiLink href={photo.thumbnailUrl} rel="noreferrer noopener">
                     {photo.thumbnailUrl}

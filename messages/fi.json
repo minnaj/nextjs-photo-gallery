@@ -1,4 +1,7 @@
 {
+  "Metadata": {
+    "title": "Next.js Kuvagalleria"
+  },
   "PhotoGallery": {
     "photo_gallery": "Kuvagalleria",
     "limit": "Raja"

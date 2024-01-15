@@ -1,4 +1,7 @@
 {
+  "Metadata": {
+    "title": "Next.js Photo Gallery"
+  },
   "PhotoGallery": {
     "photo_gallery": "Photo gallery",
     "limit": "Limit"
