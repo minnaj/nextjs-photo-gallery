@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -8,6 +7,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Photo } from "@/types/photo";
 import { PHOTO_HEIGHT, PHOTO_WIDTH } from "@/utils/image";
+import NavigationLink from "./NavigationLink";
 
 type PhotoViewProps = {
   photo?: Photo;
@@ -17,9 +17,7 @@ export default async function PhotoView({ photo }: PhotoViewProps) {
   return (
     <>
       <Box mb={2}>
-        <MuiLink component={Link} href="/">
-          Return to gallery
-        </MuiLink>
+        <NavigationLink href="/">Return to gallery</NavigationLink>
       </Box>
       <Grid container spacing={2}>
         <Grid item>

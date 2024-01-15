@@ -1,0 +1,12 @@
+{
+  "PhotoGallery": {
+    "photo_gallery": "Kuvagalleria",
+    "limit": "Raja"
+  },
+  "PhotoView": {
+    "title": "Nimi",
+    "album": "Albumi",
+    "thumbnail": "Esikatselukuva",
+    "return_to_gallery": "Palaa galleriaan"
+  }
+}

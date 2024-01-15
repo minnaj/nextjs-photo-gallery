@@ -1,27 +1,11 @@
-import type { Metadata } from "next";
-import ThemeRegistry from "@/components/ThemeRegistry";
-import Navbar from "@/components/Navbar";
-import Container from "@mui/material/Container";
+import { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: "React Photo Gallery",
+type Props = {
+  children: ReactNode;
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body>
-        <ThemeRegistry>
-          <Navbar />
-          <Container maxWidth="lg" sx={{ marginTop: 5, minWidth: "22rem" }}>
-            {children}
-          </Container>
-        </ThemeRegistry>
-      </body>
-    </html>
-  );
+// Since we have a `not-found.tsx` page on the root, a layout file
+// is required, even if it's just passing children through.
+export default function RootLayout({ children }: Props) {
+  return children;
 }

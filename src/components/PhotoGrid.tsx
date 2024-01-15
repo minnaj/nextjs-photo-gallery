@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import PhotoCard from "@/components/PhotoCard";
@@ -17,12 +18,18 @@ export default function PhotoGrid({
   pageCount,
   limit,
 }: PhotoGridProps) {
+  const t = useTranslations("PhotoGallery");
   if (!photos) {
     return null;
   }
   return (
     <Stack spacing={2} alignItems="center">
-      <Pagination page={page} pageCount={pageCount} limit={limit} />
+      <Pagination
+        page={page}
+        pageCount={pageCount}
+        limit={limit}
+        limitLabel={t("limit")}
+      />
       <Grid
         container
         spacing={{ xs: 1, sm: 3 }}

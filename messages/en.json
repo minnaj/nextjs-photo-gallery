@@ -1,0 +1,12 @@
+{
+  "PhotoGallery": {
+    "photo_gallery": "Photo gallery",
+    "limit": "Limit"
+  },
+  "PhotoView": {
+    "title": "Title",
+    "album": "Album",
+    "thumbnail": "Thumbnail",
+    "return_to_gallery": "Return to gallery"
+  }
+}

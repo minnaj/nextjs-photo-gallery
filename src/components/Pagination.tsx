@@ -12,12 +12,14 @@ type PaginationProps = {
   page: number;
   pageCount: number | null;
   limit: number;
+  limitLabel: string;
 };
 
 export default function Pagination({
   page,
   pageCount,
   limit,
+  limitLabel,
 }: PaginationProps) {
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -60,7 +62,7 @@ export default function Pagination({
       />
       <Select
         id="limit-select"
-        label="Limit:"
+        label={`${limitLabel}:`}
         value={limit}
         onChange={handlePageSizeChange}
         options={LIMIT_OPTIONS.map((option) => ({
