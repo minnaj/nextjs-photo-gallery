@@ -1,5 +1,7 @@
+import { notFound } from "next/navigation";
 import { Photo } from "@/types/photo";
 import PhotoView from "@/components/PhotoView";
+import { parseNumber } from "@/utils/parse";
 
 async function getPhoto(id: number): Promise<Photo> {
   // await sleep(4000); // To test suspense
@@ -11,11 +13,15 @@ async function getPhoto(id: number): Promise<Photo> {
 }
 
 type PhotoPageProps = {
-  params: { id: number };
+  params: { id: string };
 };
 
 export default async function PhotoPage({ params }: PhotoPageProps) {
-  const photo = await getPhoto(params.id);
+  const numberId = parseNumber(params.id, null);
+  if (Number.isNaN(numberId) || numberId === null) {
+    return notFound();
+  }
+  const photo = await getPhoto(numberId);
 
   return <PhotoView photo={photo} />;
 }
