@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Photo } from "@/types/photo";
-import PhotoView from "@/components/PhotoView";
+import PhotoView from "@/components/photoPage/PhotoView";
 import { parseNumber } from "@/utils/parse";
 
 async function getPhoto(id: number): Promise<Photo> {
