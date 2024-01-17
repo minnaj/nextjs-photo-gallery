@@ -4,7 +4,6 @@ import PhotoView from "@/components/photoPage/PhotoView";
 import { parseNumber } from "@/utils/parse";
 
 async function getPhoto(id: number): Promise<Photo> {
-  // await sleep(4000); // To test suspense
   const res = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`);
   if (!res.ok) {
     throw new Error(`Failed to fetch photo ID ${id}`);

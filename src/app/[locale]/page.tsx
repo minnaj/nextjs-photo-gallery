@@ -2,7 +2,6 @@ import PhotoGrid from "@/components/PhotoGrid";
 import { Photo } from "@/types/photo";
 import { LIMIT_OPTIONS } from "@/utils/image";
 import { parseNumber } from "@/utils/parse";
-// import sleep from "@/utils/sleep";
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 20;
@@ -13,7 +12,6 @@ type PhotoData = {
 };
 
 async function getPhotos(page = 1, limit = 10): Promise<PhotoData> {
-  // await sleep(4000); // To test suspense
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${limit}`,
   );
