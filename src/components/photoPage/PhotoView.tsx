@@ -22,7 +22,7 @@ export default function PhotoView({ photo }: PhotoViewProps) {
           {t("return_to_gallery")}
         </Button>
       </Box>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="center">
         <Grid item>
           <LoadableImage
             src={photo?.url}
@@ -31,7 +31,7 @@ export default function PhotoView({ photo }: PhotoViewProps) {
             height={PHOTO_HEIGHT}
           />
         </Grid>
-        <Grid item xs>
+        <Grid item xs sm="auto">
           <PhotoInformation photo={photo} />
         </Grid>
       </Grid>

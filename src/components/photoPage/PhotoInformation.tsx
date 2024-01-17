@@ -12,7 +12,14 @@ export default function PhotoInformation({ photo }: PhotoViewProps) {
   const t = useTranslations("PhotoView");
 
   return (
-    <Paper sx={{ p: 2 }}>
+    <Paper
+      sx={{
+        p: 4,
+        width: "31.25rem",
+        maxWidth: "100%",
+        "& > ul": { margin: 0, padding: 0, "> li": { listStyleType: "none" } },
+      }}
+    >
       <ul>
         <Typography variant="body1" component="li">
           {`${t("title")}: ${photo?.title || ""}`}
@@ -26,7 +33,11 @@ export default function PhotoInformation({ photo }: PhotoViewProps) {
         <Typography variant="body1" component="li">
           {"URL: "}
           {photo?.url && (
-            <MuiLink href={photo.url} rel="noreferrer noopener">
+            <MuiLink
+              href={photo.url}
+              rel="noreferrer noopener"
+              color="secondary"
+            >
               {photo.url}
             </MuiLink>
           )}
@@ -34,7 +45,11 @@ export default function PhotoInformation({ photo }: PhotoViewProps) {
         <Typography variant="body1" component="li">
           {`${t("thumbnail")} URL: `}
           {photo?.thumbnailUrl && (
-            <MuiLink href={photo.thumbnailUrl} rel="noreferrer noopener">
+            <MuiLink
+              href={photo.thumbnailUrl}
+              rel="noreferrer noopener"
+              color="secondary"
+            >
               {photo.thumbnailUrl}
             </MuiLink>
           )}

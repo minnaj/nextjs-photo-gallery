@@ -41,6 +41,8 @@ export default function LoadableImage({
           onLoad={() => setIsLoading(false)}
           sx={{
             opacity: isLoading ? 0 : 1,
+            maxWidth: "100%",
+            height: "auto",
           }}
         />
         <Skeleton
@@ -51,6 +53,7 @@ export default function LoadableImage({
             position: "absolute",
             top: 0,
             left: 0,
+            maxWidth: "100%",
             opacity: isLoading ? 1 : 0,
             transitionDuration: "500ms",
             transitionProperty: "opacity",
