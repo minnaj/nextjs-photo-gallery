@@ -1,12 +1,14 @@
 "use client";
-import { ChangeEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import MuiPagination from "@mui/material/Pagination";
+import MuiPaginationItem from "@mui/material/PaginationItem";
 import { SelectChangeEvent } from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import Select from "@/components/Select";
 import { LIMIT_OPTIONS } from "@/utils/image";
 import { useSmOrLarger } from "@/utils/breakpoints";
+import { Link } from "@/navigation";
 
 type PaginationProps = {
   page: number;
@@ -21,7 +23,7 @@ export default function Pagination({
   limit,
   limitLabel,
 }: PaginationProps) {
-  const { replace } = useRouter();
+  const { push } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const smOrLarger = useSmOrLarger();
@@ -30,21 +32,17 @@ export default function Pagination({
     if (pageCount && page > pageCount) {
       const params = new URLSearchParams(searchParams);
       params.set("page", `${pageCount}`);
-      replace(`${pathname}?${params.toString()}`);
+      push(`${pathname}?${params.toString()}`);
     }
-  }, [replace, page, pageCount, pathname, searchParams]);
-
-  const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", `${value}`);
-    replace(`${pathname}?${params.toString()}`);
-  };
+  }, [push, page, pageCount, pathname, searchParams]);
 
   const handlePageSizeChange = (event: SelectChangeEvent<number>) => {
     const params = new URLSearchParams(searchParams);
     params.set("limit", `${event.target.value}`);
-    replace(`${pathname}?${params.toString()}`);
+    push(`${pathname}?${params.toString()}`);
   };
+
+  const limitParam = searchParams.get("limit");
 
   if (!pageCount) {
     return null;
@@ -53,12 +51,21 @@ export default function Pagination({
     <Stack direction="row" spacing={2} alignItems="center">
       <MuiPagination
         page={page}
-        onChange={handlePageChange}
         count={pageCount}
         shape="rounded"
         color="primary"
         siblingCount={smOrLarger ? 1 : 0}
         size={smOrLarger ? "medium" : "small"}
+        renderItem={(item) => (
+          <MuiPaginationItem
+            component={Link}
+            href={`?page=${item.page}${
+              limitParam ? `&limit=${limitParam}` : ""
+            }`}
+            shallow
+            {...item}
+          />
+        )}
       />
       <Select
         id="limit-select"
