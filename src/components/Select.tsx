@@ -15,6 +15,7 @@ type CustomSelectProps<T> = {
   id: string;
   options: CustomSelectOption<T>[];
   onChange: (event: SelectChangeEvent<T>) => void;
+  size?: "medium" | "small";
 };
 
 export default function Select<T extends string | number>({
@@ -23,11 +24,16 @@ export default function Select<T extends string | number>({
   id,
   options,
   onChange,
+  size,
 }: CustomSelectProps<T>) {
   const smOrLarger = useSmOrLarger();
 
+  let selectSize: "medium" | "small" = smOrLarger ? "medium" : "small";
+  if (size) {
+    selectSize = size;
+  }
   return (
-    <FormControl size={smOrLarger ? "medium" : "small"}>
+    <FormControl size={selectSize}>
       <InputLabel id={`${id}-label`} sx={{ mr: 1 }}>
         {label}
       </InputLabel>

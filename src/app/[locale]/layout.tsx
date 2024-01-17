@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Container from "@mui/material/Container";
 import ThemeRegistry from "@/components/ThemeRegistry";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 
 type GenerateMetadataParams = { params: { locale: string } };
 

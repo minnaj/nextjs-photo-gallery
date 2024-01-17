@@ -2,6 +2,10 @@
   "Metadata": {
     "title": "Next.js Photo Gallery"
   },
+  "LanguageSelect": {
+    "language": "Language",
+    "locale": "{locale, select, fi {Suomi} en {English} other {-}}"
+  },
   "PhotoGallery": {
     "photo_gallery": "Photo gallery",
     "limit": "Limit"
