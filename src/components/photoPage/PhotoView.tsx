@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { Photo } from "@/types/photo";
 import NavigationLink from "../NavigationLink";
 import PhotoInformation from "./PhotoInformation";
@@ -17,7 +18,9 @@ export default function PhotoView({ photo }: PhotoViewProps) {
   return (
     <>
       <Box mb={2}>
-        <NavigationLink href="/">{t("return_to_gallery")}</NavigationLink>
+        <Button component={NavigationLink} href="/">
+          {t("return_to_gallery")}
+        </Button>
       </Box>
       <Grid container spacing={2}>
         <Grid item>
