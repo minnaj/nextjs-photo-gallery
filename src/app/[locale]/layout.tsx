@@ -13,6 +13,10 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
     title: t("title"),
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
