@@ -4,6 +4,7 @@ import { useState } from "react";
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import { useSmOrLarger } from "@/utils/breakpoints";
 
 const StyledImage = styled(Image)(() => ({
   transitionDuration: "500ms",
@@ -24,15 +25,31 @@ export default function LoadableImage({
   width,
   height,
 }: LoadableImageProps) {
+  const smOrLarger = useSmOrLarger();
   const [isLoading, setIsLoading] = useState(true);
 
   if (!src) {
-    return <Skeleton variant="rectangular" height={height} width={width} />;
+    return (
+      <Skeleton
+        width={
+          smOrLarger
+            ? `min(calc(100vw - 2rem), ${width}px)`
+            : "calc(100vw - 2rem)"
+        }
+        height={
+          smOrLarger
+            ? `min(calc(100vw - 2rem), ${height}px)`
+            : "calc(100vw - 2rem)"
+        }
+        sx={{ transform: "none" }}
+      />
+    );
   }
 
+  // Use display: block to remove extra space below img
   return (
     <>
-      <Box sx={{ position: "relative" }}>
+      <Box sx={{ position: "relative", "& img": { display: "block" } }}>
         <StyledImage
           height={height}
           width={width}
@@ -47,7 +64,7 @@ export default function LoadableImage({
         />
         <Skeleton
           variant="rectangular"
-          height={height}
+          height="100%"
           width={width}
           sx={{
             position: "absolute",

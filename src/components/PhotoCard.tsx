@@ -11,13 +11,8 @@ type PhotoCardProps = {
 };
 
 export default function PhotoCard({ id, imageUrl, title }: PhotoCardProps) {
-  // Use display: block to remove extra space below img
   return (
-    <Grid
-      item
-      flexShrink="0"
-      sx={{ "& img": { display: "block" }, "> a": { position: "relative" } }}
-    >
+    <Grid item flexShrink="0">
       <NavigationLink href={`/photo/${id}`} shallow>
         <LoadableImage
           src={imageUrl}
